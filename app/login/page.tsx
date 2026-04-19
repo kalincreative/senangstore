@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { login, signInWithGoogle } from '../auth-actions'
+import { login, signInWithGoogle } from '@/auth-actions'
 
 export default async function LoginPage({
   searchParams,
