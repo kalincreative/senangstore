@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { signOut } from '../(auth)/actions'
+import { signOut } from '../auth-actions'
 
 export default function DashboardLayout({
   children,

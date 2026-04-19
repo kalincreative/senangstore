@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { checkSlug, completeOnboarding } from './actions'
+import { checkSlug, completeOnboarding } from '../onboarding-actions'
 import { useRouter } from 'next/navigation'
 
 export default function OnboardingPage() {

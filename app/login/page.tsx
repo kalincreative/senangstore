@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import { login, signInWithGoogle } from '../actions'
+import { login, signInWithGoogle } from '../auth-actions'
 
-export default function LoginPage({
+export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: { message: string }
+  searchParams: Promise<{ message: string }>
 }) {
+  const { message } = await searchParams
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 mx-auto py-12">
       <div className="text-center mb-8">
@@ -82,9 +83,9 @@ export default function LoginPage({
           Google
         </button>
 
-        {searchParams?.message && (
+        {message && (
           <p className="mt-4 p-4 bg-red-50 text-red-600 text-center rounded-lg text-sm border border-red-100">
-            {searchParams.message}
+            {message}
           </p>
         )}
       </form>
