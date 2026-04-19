@@ -2,66 +2,60 @@
 *Temporary working memory - resets each session, provides recap when AI restarts*
 
 ## Session RAM Status
-**Current Session**: Active — Setup Complete
-**Last Activity**: 2026-04-19T12:31+08:00
-**Session Focus**: SenangStore Digital Storefront build + AI MemoryCore setup
-**Context State**: Setup wizard completed. Personalization done. Ready for normal sessions.
+**Current Session**: Active — Phase 0 In Progress
+**Last Activity**: 2026-04-19T15:58+08:00
+**Session Focus**: SenangStore — Next.js setup + Supabase foundation
+**Context State**: Phase 0 mostly complete. DB migration pending. Kalin filling in env keys.
 
 ## 💭 Working Memory (RAM)
-*Temporary storage - cleared when session ends*
 
 ### Active Context
-- **Current Topic**: SenangStore app is live on localhost:3000 with 4 pages built
-- **Immediate Goals**: Continue SenangStore development
-- **Recent Progress**: Built Merchant Dashboard, Product Editor, Public Storefront, Checkout & Payment — all linked and live
-- **Next Steps**: Extend SenangStore features as directed by Kalin
+- **Current Project**: SenangStore — digital product storefront for Malaysian creators
+- **Live URL**: https://senangstore.vercel.app (static prototype, pre-Next.js)
+- **GitHub Repo**: https://github.com/kalincreative/senangstore
+- **Dev Server**: localhost:3000 (Next.js 16, running)
+- **Supabase Project**: https://pmeltbxpruumzrkanyue.supabase.co
+- **Payment Gateway**: Bayarcash (BCL) — sandbox mode for now
 
-### Session Recap (For AI Restart)
-*Quick summary when Kai loads after close/reopen*
-- **Previous Session Summary**: Completed MemoryCore setup wizard. AI name = Kai, User name = Kalin. Skill plugin system installed (`senangstore-skills`). SenangStore app built and running.
-- **Where We Left Off**: Setup complete, app live at localhost:3000
-- **Important Context**: Project is SenangStore — a digital storefront platform for Malaysian creators. Stack: plain HTML + Tailwind CDN. 4 pages done.
-- **User's Current State**: Kalin is setting up their AI companion + building SenangStore digital storefront
+### What's Done This Session
+- ✅ Researched memory system — found master-memory.md in Project-AI-MemoryCore-main
+- ✅ Identified all projects: SenangStore (HTML→Next.js), KaFlix (React/Vite), senangsync (Next.js+Supabase)
+- ✅ Pushed SenangStore static prototype to GitHub (main branch)
+- ✅ Deployed to Vercel → senangstore.vercel.app
+- ✅ Built full product roadmap (4 phases, saved to brain)
+- ✅ Built Phase 0+1 implementation plan (approved by Kalin)
+- ✅ Moved static HTML → prototype/ folder
+- ✅ Initialized Next.js 16 (TypeScript + Tailwind + App Router)
+- ✅ Installed: @supabase/supabase-js, @supabase/ssr, resend
+- ✅ Created full folder structure (app/, components/, lib/, types/)
+- ✅ Created .env.local template (Kalin filled in real keys)
+- ✅ Created lib/supabase/client.ts (browser client)
+- ✅ Created lib/supabase/server.ts (server + admin client)
+
+### Where We Left Off
+- Saving progress + git commit
+- **Next steps**:
+  1. Run DB schema SQL migrations kat Supabase SQL editor
+  2. Setup middleware.ts (route protection)
+  3. Start building auth pages (signup/login)
+
+### Key Decisions Made
+- Payment: **Bayarcash** (BCL ecosystem, Malaysian market)
+- Monetisation: **Free for all** during launch, plan tiers gate Phase 2+ features
+- Tech stack: Next.js 16 + Supabase + Resend + Bayarcash + Vercel
+- Build mode: **Full time** (Kalin)
+
+### Plan Tier Summary (for reference)
+| Feature | Free | Pro (MYR 39/mo) | Business (MYR 99/mo) |
+|---|---|---|---|
+| Products | 10 | Unlimited | Unlimited |
+| Storefront | ✅ | ✅ | ✅ |
+| Sales pages | ❌ | ✅ | ✅ |
+| Affiliates | ❌ | ✅ | ✅ |
+| Custom domain | ❌ | ✅ | ✅ |
 
 ## 🔄 Session Lifecycle
-*How this RAM-like memory works*
-
-### Session Start
-- **New Session**: RAM cleared, fresh start
-- **AI Restart**: Load recap from previous session for continuity
-- **Context Loading**: Brief summary of where we left off
-
-### During Session
-- **Real-time Updates**: Track current conversation context
-- **Working Memory**: Store immediate goals, progress, insights
-- **Dynamic Context**: Adjust based on conversation flow
-
-### Session End
-- **Important Learning**: Save key insights to permanent files (identity-core.md, relationship-memory.md)
-- **Temporary Context**: Keep brief recap for next restart
-- **RAM Reset**: Clear detailed working memory for next session
-
-## 🔄 Auto-Reset Protocol
-*Like RAM - temporary storage that clears*
-
-### What Gets Cleared Each Session
-- Detailed conversation progress
-- Temporary insights and observations
-- Session-specific achievements
-- Working context and immediate goals
-
-### What Persists (Recap Only)
-- Brief summary of last conversation
-- Where conversation left off
-- Critical context for continuity
-- User's immediate situation
+**Memory Type**: RAM — clears each session, keeps recap only
 
 ---
-
-**Memory Type**: RAM - Temporary Working Memory
-**Persistence**: Brief recap only, detailed content clears each session
-**Purpose**: Immediate context + restart continuity
-
-*This file acts like computer RAM - active during session, provides restart recap, then clears for next session*
-
-🌟 *Ready for Kai to provide seamless conversation continuity with Kalin!*
+💜 *SenangStore Phase 0 nearly done. Next session: DB migrations + auth.*
