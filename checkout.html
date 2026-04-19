@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | SenangStore</title>
+<meta name="description" content="Secure checkout for your SenangStore digital purchase. Pay via FPX or DuitNow QR."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#00685f","primary-container":"#008378","primary-fixed":"#89f5e7","on-primary":"#ffffff","on-primary-container":"#f4fffc","secondary":"#855300","secondary-container":"#fea619","on-secondary-container":"#684000","tertiary":"#4648d4","surface":"#f9f9ff","surface-container-lowest":"#ffffff","surface-container-low":"#f0f3ff","surface-container":"#e7eeff","surface-container-high":"#dee8ff","surface-container-highest":"#d8e3fb","on-surface":"#111c2d","on-surface-variant":"#3d4947","on-background":"#111c2d","outline":"#6d7a77","outline-variant":"#bcc9c6"},fontFamily:{headline:["Plus Jakarta Sans"],body:["Manrope"]},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"}}}}
+</script>
+<style>
+  body{font-family:'Manrope',sans-serif}h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+  .method-card{cursor:pointer;transition:border-color 0.2s,background 0.2s}
+  .method-card.selected{border-color:#00685f;background:rgba(0,104,95,0.05)}
+  .bank-card{cursor:pointer;transition:border-color 0.2s,background 0.2s}
+  .bank-card:hover{border-color:#00685f}
+  .bank-card.selected{border-color:#00685f;background:#f0f3ff}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner{animation:spin 0.9s linear infinite}
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-xl shadow-sm h-16 flex justify-between items-center px-6">
+  <div class="flex items-center gap-8">
+    <a href="/" class="text-xl font-bold tracking-tight text-teal-800 font-headline">SenangStore</a>
+    <div class="hidden md:flex gap-6 font-headline font-medium text-sm">
+      <span class="text-teal-700 border-b-2 border-teal-600 pb-1">Checkout</span>
+      <span class="text-slate-500 hover:text-teal-600 transition-colors cursor-pointer">Support</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors">help</span>
+    <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+      <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRDnKq-f4cqUhYsAGv_slyBQHlODvIAiZYgT9P3kacBLFYUTLygXD4Wm3P5Jq-2qjWT4wI6KQoXwcFSY5A-Z_0w0ONINJwXTHKhCFCEGjz0oQPnL8GgW7I4xY0eCDJ9kCP1YjJbSsFj79331s3h0CU9Er0ewj9XgmfSmNe_32jjmiIn55LX_EUBwXU3F8BPA3Ows2i1lbmZxX2vfd4FluYaNoLr1DUN94TEVt1qeouP6N6H4ki7UeFP6juk5aEnoDSvgsEZPJpX54"/>
+    </div>
+  </div>
+</nav>
+
+<!-- Processing Overlay -->
+<div id="overlay" class="hidden fixed inset-0 z-50 bg-on-background/20 backdrop-blur-md flex items-center justify-center p-6">
+  <div class="bg-white rounded-2xl p-10 max-w-md w-full shadow-2xl flex flex-col items-center text-center">
+    <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full spinner mb-6"></div>
+    <h2 class="text-2xl font-bold mb-2">Verifying Payment</h2>
+    <p class="text-on-surface-variant text-sm">Please wait while we communicate with your bank to finalise the transaction.</p>
+  </div>
+</div>
+
+<!-- Main -->
+<main class="pt-24 pb-12 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+    <!-- Left – Order Summary -->
+    <div class="lg:col-span-5 flex flex-col gap-7">
+      <div>
+        <h1 class="text-5xl font-extrabold tracking-tight text-on-surface leading-tight">
+          Confirm your <br/><span class="text-primary">Acquisition.</span>
+        </h1>
+        <p class="text-on-surface-variant mt-4 max-w-sm text-sm leading-relaxed">
+          Secure high-performance digital assets for Southeast Asian founders. Immediate delivery post-payment.
+        </p>
+      </div>
+
+      <!-- Product Card -->
+      <div class="relative group mt-2">
+        <div class="absolute -top-4 -left-4 w-20 h-20 bg-primary-container/20 rounded-xl -z-10 group-hover:rotate-12 transition-transform duration-500"></div>
+        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-5 relative overflow-hidden">
+          <div class="flex gap-5 items-center">
+            <div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0">
+              <img class="w-full h-full object-cover" alt="Atelier Premium Kit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX4_mkLPVSqUojLWGAyJm8wsn8oqLqRyxkoYIfOji1VSFyE8CBkD-W-plkUkmyd8oY0QpPPDDCJ28ZV8xn6kOkkk3cy_FaFvybTpg4U9BHsoTjKI8zyazDqCi5JOXVZN3x6wXVOX-E5aMNSY9BulcwBB0etLtcrgQnYVo5EuR77JIGu1OUpzG5m4-RYqGD1CmsjOpDhAKHF36isNwG6ngWwZ4CKF6k8rdbcsexRCfXDSFZ2WlCpas4_IzODQToW9Db8hU5XbpTNhE"/>
+            </div>
+            <div>
+              <span class="text-xs font-bold tracking-widest uppercase text-primary/60">Digital License</span>
+              <h3 class="text-xl font-bold text-on-surface mt-0.5">Atelier Premium Kit v2.0</h3>
+              <p class="text-sm text-on-surface-variant">Unlimited Lifetime Access</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-dashed border-outline-variant/30 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-medium">Subtotal</span>
+              <span class="font-bold">MYR 129.00</span>
+            </div>
+            <div class="flex justify-between items-center text-primary">
+              <span class="text-sm font-medium">Processing Fee</span>
+              <span class="font-bold">MYR 0.00</span>
+            </div>
+            <div class="flex justify-between items-end pt-2">
+              <span class="text-sm text-on-surface-variant">Total Amount</span>
+              <span class="text-3xl font-black text-on-surface">MYR 129.00</span>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 w-28 h-28 bg-secondary-container/10 rounded-full -z-10 blur-2xl pointer-events-none"></div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-primary-container text-on-primary-container rounded-full text-xs font-bold">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">verified</span>
+          Bank Negara Compliant
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-bold">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          SSL Encrypted
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-bold">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">shield</span>
+          Money-back Guarantee
+        </div>
+      </div>
+    </div>
+
+    <!-- Right – Payment Panel -->
+    <div class="lg:col-span-7 bg-surface-container-low p-1 rounded-2xl">
+      <div class="bg-surface-container-lowest rounded-[1.1rem] p-7 md:p-9 shadow-sm">
+
+        <!-- Step 1: Payment Method -->
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+          <span class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-sm font-bold">1</span>
+          Choose Payment Method
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div id="method-fpx" class="method-card selected border-2 border-primary bg-primary/5 p-5 rounded-xl flex flex-col gap-3" onclick="selectMethod('fpx')">
+            <div class="flex justify-between items-start">
+              <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+              </div>
+              <span id="check-fpx" class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1">check_circle</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-on-surface">FPX (Online Banking)</h4>
+              <p class="text-xs text-on-surface-variant">Direct bank transfer from major banks</p>
+            </div>
+          </div>
+          <div id="method-duitnow" class="method-card border-2 border-outline-variant/20 hover:border-primary/40 p-5 rounded-xl flex flex-col gap-3" onclick="selectMethod('duitnow')">
+            <div class="flex justify-between items-start">
+              <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <span class="material-symbols-outlined text-secondary text-3xl">qr_code_2</span>
+              </div>
+              <span id="check-duitnow" class="hidden material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1">check_circle</span>
+              <div id="radio-duitnow" class="w-5 h-5 rounded-full border-2 border-outline-variant"></div>
+            </div>
+            <div>
+              <h4 class="font-bold text-on-surface">DuitNow QR</h4>
+              <p class="text-xs text-on-surface-variant">Scan &amp; Pay via any local bank app</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Select Bank -->
+        <h2 class="text-2xl font-bold mb-5 flex items-center gap-3">
+          <span class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-sm font-bold">2</span>
+          Select Your Bank
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" id="banks-grid">
+          <!-- banks injected by JS -->
+        </div>
+
+        <!-- Action -->
+        <div class="flex flex-col gap-4">
+          <button id="pay-btn" onclick="handlePay()" class="w-full h-14 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-bold text-base shadow-[0_12px_24px_-8px_rgba(0,104,95,0.3)] hover:scale-[1.02] active:scale-95 duration-200 transition-all flex items-center justify-center gap-2">
+            <span>Proceed to Secure Payment</span>
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+          <p class="text-center text-xs text-on-surface-variant px-4">
+            By clicking proceed, you will be redirected to our secure FPX gateway. Your payment information is protected by industry-standard encryption.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Section -->
+  <div id="success-section" class="hidden mt-20 border-t border-outline-variant/20 pt-16">
+    <div class="bg-primary/5 rounded-3xl p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden">
+      <div class="absolute top-0 right-0 p-6 pointer-events-none">
+        <span class="material-symbols-outlined text-primary/10 text-[100px]" style="font-variation-settings:'FILL' 1">check_circle</span>
+      </div>
+      <div class="w-28 h-28 rounded-2xl bg-primary text-white flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1">download_done</span>
+      </div>
+      <div class="flex flex-col gap-3 relative z-10">
+        <span class="text-primary font-bold uppercase tracking-widest text-sm">Purchase Complete!</span>
+        <h2 class="text-3xl font-extrabold text-on-surface">Payment Successful! 🎉</h2>
+        <p class="text-on-surface-variant max-w-lg text-sm">Your Atelier Premium Kit has been unlocked. Check your email for the license key or download the assets below.</p>
+        <div class="flex flex-wrap gap-3 mt-2">
+          <button class="bg-primary text-white px-7 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-primary-container transition-colors">
+            <span class="material-symbols-outlined">download</span> Download Assets
+          </button>
+          <button class="bg-white border border-outline-variant/30 text-on-surface px-7 py-3 rounded-xl font-bold text-sm hover:bg-surface-container transition-colors">
+            View Receipt
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="h-20 flex items-center justify-center text-on-surface-variant/40 text-xs font-medium tracking-widest uppercase border-t border-outline-variant/10">
+  SenangStore Digital Atelier • Secure Checkout System
+</footer>
+
+<script>
+const banks = [
+  {name:'Maybank',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuCK0HInzJh71rrm4ByFIOf7LRQXrsku3IVihV6-anGGQn5WskOTOcbETSiuGgDOWV8Al7Nl7o8uhqWcvZOAFfaD9Wtf88Dt2GydM25VC9m_nyfTisR3PqirGjQuseA_tfXfYZL3k80ZvzeP-1ArkBfShKNqN_jCKxVTOUQE--HIJueFqi0jyOrIlIszeFHXvsf6YTmYeSG4RGNHWIyKgbJESqT8oPwWpnwCnTavATCpJtLWUPn5u2z5NNmAYQsqrpznqIT0rRuJrpk'},
+  {name:'CIMB',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuBIvi2PV7zy3Lrlj9iG7GSQYHddYzu0WsKAmuebCRxGMqJ7J8l8ujYQodvaV_49dbiX__2PFYps7dOSOlBsYdbEEYW4KxKG2qOOpobuEKOC-BLHMzyN8RXD0ZWwEHDfiT-sPLcivambVpvRCiFVQJy8-cDqqaZ71KpMRmvtL3-QW4X_AhY3873z03fA1GYvixKKaSqioSgde26vQ9ebB9lzD1ZZCrfWmOo3kVLzgrezybglYDJVHOAt_PYUFYo87On4CRbH0YDUCO4'},
+  {name:'Public Bank',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuB0-mp95q98jZ2B61f8-97JXOkhHcCS767sllJzxDvd4wN_inmYr98SGqAE4B2Q62BtkpYocKhreKNRlgVIjnaLUvVctK3LyWljd866Kj5ElQQlYDFeOBgfQVc1NZ9qleyVKiAJNQXoZnY3vyIplpQ4-G-eWYdxmfq7fRDRK7d7eLisPqvd5Eg5VGbel7KRlSNNpzoTkIkv6upUosVk1eYgltmLlDASYq9hJZ_QZ72WGWjJDztLOIK-s2qp_-sSkkTwcHiKo1FLxVs'},
+  {name:'RHB',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuCkwqJE_yzdj9DzFytuTagr3j8ShMNi_V_tcj1NwAPcQfd29fBnoaJ8yypnViR4c6q0PJAR_NmdMD2JIuT9eTk01sT5_gAFTWuA49gH-hWJ4kgDW8B_l1AqqG217kbbK8glIIcb3P3qvvABy792DGnrZq47xgr4MXkVbj6d870MgseHwFL-d6Xt6qUFcTge0FOtK0WxRs68TMI5-Vh-v7Xsw2OC6E-eCj2oUlhx81KvcbqcBvL2huud0-1TLSPXTCi0d1n-wdz6Kjo'},
+  {name:'Hong Leong',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuDA6es67gb6VBYblS5K3RRUl4MxgroesiM-s-eIyNjJUmaw5cqncMC79I6Xm-4BLv7hCtOl3TnkHzXhZBYnpvHuCmJjPjVlLcaNMFDq10GesD8PJTmHj8b3uT6OQk2qfbGQnF7frUlfHKCZP7xLhSPFFq4QhAyb6tMZjilYLxgKZcZDrXlCX7dWsNPTgagQ3gJfHbj7yVVvs0JGr6ZnbdCucN-2KCF64gZAr-iHl77iqtHAZF61fABU--lqgbuISu22L9EADZhvT_k'},
+  {name:'Ambank',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuBU341olfRYmM8LgKr3FOpOXRh9Q44pqOL__n38HEveiT_U42CWXohnF0p2JU2975yQOZt0u9en_3a3QEw668dyTO3c6sC1I06Oajzo_jTzOym1QMuHGyHdvgJJjJdqoB_emh6mpgcyNUM7spd80pJeSeRItkVughLYDcoIkEzpNtiWI0Y56tjJeDHePueRUwYKNHa5-1XdRVpq98H32ML1EjeuCcW9JGUEIr0EtK6iC1S8n75q5YS8qYoMZPQWZ20obIF75U_GnXs'},
+  {name:'Affin',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuAIEA4BO4sJEoUeEvOvpgcN0xqfACm8mYig7H7HhwvDkAuTt-EsAD4pahPdKZDCmvpXi-HV9J0JQXdVn6hkV89HnpqOivvIej5X8XZPbeV3P-ddTMIZj40On6mzs22iOUoc-cAuD-Sr4i_p8W75M9vWsiPWXO2HYdf9z7nGraJOLqUX6p1pwfjPmXemMpwmlZegeXa0KFx2hofosAZkKwh7ircF10WSUv1CMr11reFwn-kJwubh5AITsYTIps2t3piCyrn5AYKfjaw'},
+  {name:'OCBC',src:'https://lh3.googleusercontent.com/aida-public/AB6AXuBj7uUOqOrAhtcNrWTqCRPn4qoEwHStWZ9LGa9AkaGnQcZzSzuoNAC27QDfcL7uuUp5OPn8r6DuddDwNu0J7IdWPHfeY9Ua9A6Be4SJ24JHQY4P4chKL2oMpioxvOvlhussPGeMei2J9EiXaryL_KnebgbL6BqmQffMfuL_mu_5OfXsz-OBLSPFtx2IWswNvK-qE7fD4xUCoxx_euIo1NpA7b-hlpkiKzMkYeDzVafiSiuk6twA6Hj4vzuRnwP0sBfmaFJoPgoUdKA'},
+];
+
+let selectedBank = null;
+const grid = document.getElementById('banks-grid');
+banks.forEach((b,i) => {
+  const el = document.createElement('div');
+  el.className = 'bank-card h-14 bg-surface-container rounded-lg border-2 border-transparent flex items-center justify-center p-2 transition-all';
+  el.id = 'bank-'+i;
+  el.innerHTML = `<img alt="${b.name}" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="${b.src}"/>`;
+  el.addEventListener('click', () => {
+    if(selectedBank!==null) document.getElementById('bank-'+selectedBank).classList.remove('selected');
+    selectedBank = i;
+    el.classList.add('selected');
+  });
+  grid.appendChild(el);
+});
+
+let currentMethod = 'fpx';
+function selectMethod(m) {
+  currentMethod = m;
+  ['fpx','duitnow'].forEach(id => {
+    const card = document.getElementById('method-'+id);
+    const check = document.getElementById('check-'+id);
+    const radio = document.getElementById('radio-'+id);
+    if(id === m) {
+      card.classList.add('selected','border-primary','bg-primary/5');
+      card.classList.remove('border-outline-variant/20');
+      if(check) check.classList.remove('hidden');
+      if(radio) radio.classList.add('hidden');
+    } else {
+      card.classList.remove('selected','border-primary','bg-primary/5');
+      card.classList.add('border-outline-variant/20');
+      if(check) check.classList.add('hidden');
+      if(radio) radio.classList.remove('hidden');
+    }
+  });
+}
+
+function handlePay() {
+  const overlay = document.getElementById('overlay');
+  overlay.classList.remove('hidden');
+  overlay.classList.add('flex');
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+    document.getElementById('success-section').classList.remove('hidden');
+    document.getElementById('success-section').scrollIntoView({behavior:'smooth'});
+  }, 2800);
+}
+</script>
+</body></html>

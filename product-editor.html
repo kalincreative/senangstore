@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Editor | SenangStore</title>
+<meta name="description" content="Create and publish digital products on your SenangStore storefront."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode:"class",
+    theme:{extend:{colors:{"primary":"#00685f","primary-container":"#008378","primary-fixed":"#89f5e7","on-primary":"#ffffff","on-primary-container":"#f4fffc","on-primary-fixed":"#00201d","secondary":"#855300","secondary-container":"#fea619","on-secondary-container":"#684000","tertiary":"#4648d4","tertiary-fixed":"#e1e0ff","on-tertiary-fixed":"#07006c","surface":"#f9f9ff","surface-container-lowest":"#ffffff","surface-container-low":"#f0f3ff","surface-container":"#e7eeff","surface-container-high":"#dee8ff","surface-container-highest":"#d8e3fb","on-surface":"#111c2d","on-surface-variant":"#3d4947","on-background":"#111c2d","outline":"#6d7a77","outline-variant":"#bcc9c6"},fontFamily:{headline:["Plus Jakarta Sans"],body:["Manrope"]},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"}}}
+  }
+</script>
+<style>
+  body{font-family:'Manrope',sans-serif}h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+  .editorial-shadow{box-shadow:0 24px 40px -4px rgba(17,28,45,0.08)}
+  .ghost-border{outline:1px solid rgba(188,201,198,0.25)}
+  .glass-panel{background:rgba(255,255,255,0.8);backdrop-filter:blur(12px)}
+  .drag-over{border-color:#00685f!important;background:#f0f3ff}
+</style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+
+<!-- Desktop Sidebar -->
+<aside class="hidden md:flex flex-col h-screen w-60 fixed left-0 top-0 p-4 bg-slate-50 border-r border-slate-100 z-50">
+  <div class="flex items-center gap-3 px-3 py-5 mb-2">
+    <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold font-headline text-lg">S</div>
+    <div>
+      <h2 class="text-base font-black text-teal-800 leading-none font-headline">SenangStore</h2>
+      <p class="text-xs text-slate-500 font-medium">Creator Merchant</p>
+    </div>
+  </div>
+  <nav class="flex flex-col gap-0.5">
+    <a class="flex items-center gap-3 text-slate-500 py-2.5 px-3 hover:bg-slate-200/50 rounded-lg text-sm font-headline" href="/dashboard.html">
+      <span class="material-symbols-outlined text-xl">dashboard</span> Dashboard
+    </a>
+    <a class="flex items-center gap-3 bg-white text-teal-700 shadow-sm rounded-lg py-2.5 px-3 text-sm font-headline font-semibold" href="/product-editor.html">
+      <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1">inventory_2</span> Products
+    </a>
+    <a class="flex items-center gap-3 text-slate-500 py-2.5 px-3 hover:bg-slate-200/50 rounded-lg text-sm font-headline" href="/checkout.html">
+      <span class="material-symbols-outlined text-xl">payments</span> Payments
+    </a>
+    <a class="flex items-center gap-3 text-slate-500 py-2.5 px-3 hover:bg-slate-200/50 rounded-lg text-sm font-headline" href="#">
+      <span class="material-symbols-outlined text-xl">settings</span> Settings
+    </a>
+  </nav>
+  <div class="mt-auto p-3">
+    <button onclick="handlePublish()" class="w-full py-2.5 rounded-lg bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm flex items-center justify-center gap-2 editorial-shadow hover:opacity-90 transition-opacity">
+      <span class="material-symbols-outlined text-sm">add</span> New Product
+    </button>
+  </div>
+</aside>
+
+<!-- Mobile Top Nav -->
+<header class="md:hidden fixed top-0 w-full z-40 bg-white/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 h-16">
+  <a href="/" class="text-xl font-bold tracking-tight text-teal-800 font-headline">SenangStore</a>
+  <div class="w-8 h-8 rounded-full overflow-hidden bg-slate-200">
+    <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk4lm9LWZ9wb5is9qbrXu5JMfpS6SOtCJb0xsnMQ9rk21WW7iOotjtpZPM68Dsuiiek5rbNyN5Kxz9tziDPKzJJD3Vi7magjZhh8Ojt2LquuUzRVZGKjPssI5lt6LAuRedtk-GeaPzg9iScGURa6XyzjUqBk0N7x26v1mht_0HoLeDbnWHdge2-xDLl-VjD4VWpcUNSckEbtYnRC_UC1b35G7HQZdI9esNgqeoNjHi2Qp-ZHqgWQI_YZurFDCj3AYPOVXU6ypY53I"/>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="md:ml-60 pt-20 md:pt-0 min-h-screen">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 py-10">
+    <!-- Header -->
+    <div class="mb-10 md:flex md:items-end md:justify-between">
+      <div>
+        <nav class="flex items-center gap-2 text-outline mb-3 text-xs font-bold uppercase tracking-widest">
+          <a href="/dashboard.html" class="hover:text-primary transition-colors">Store</a>
+          <span class="material-symbols-outlined text-xs opacity-50">chevron_right</span>
+          <span class="text-primary">Editor</span>
+        </nav>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter leading-tight">
+          Design your <span class="text-primary italic">Digital Atelier</span>
+        </h1>
+      </div>
+      <div class="mt-6 md:mt-0 flex gap-3">
+        <button onclick="handleDiscard()" class="px-6 py-2.5 rounded-lg text-primary font-bold text-sm border-2 border-primary/20 hover:bg-surface-container-high transition-colors">Discard</button>
+        <button onclick="handlePublish()" id="publish-btn" class="px-7 py-2.5 rounded-lg bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm editorial-shadow active:scale-95 transition-all">Publish Product</button>
+      </div>
+    </div>
+
+    <!-- Editor Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <!-- Form -->
+      <div class="lg:col-span-7 space-y-8">
+        <!-- Upload -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary">cloud_upload</span> Digital Assets
+            </h3>
+            <span class="text-[10px] bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-bold uppercase">Up to 2GB</span>
+          </div>
+          <div class="relative group cursor-pointer" id="drop-zone">
+            <div class="absolute -inset-1 bg-gradient-to-r from-tertiary/20 to-primary/20 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-700 pointer-events-none"></div>
+            <div class="relative bg-surface-container-lowest border-2 border-dashed border-outline-variant/40 rounded-xl p-10 text-center transition-all hover:border-primary/50" id="drop-inner">
+              <span class="material-symbols-outlined text-5xl text-outline mb-3 group-hover:text-primary transition-colors block">upload_file</span>
+              <p class="text-on-surface font-bold">Drag &amp; Drop your assets</p>
+              <p class="text-sm text-outline mt-1 font-medium">Supports PDF, ZIP, MP4, or JPEG</p>
+              <input type="file" id="file-input" class="hidden" multiple/>
+              <button onclick="document.getElementById('file-input').click()" class="mt-5 px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-bold text-xs hover:bg-surface-container-high transition-colors">Browse Files</button>
+              <div id="file-list" class="mt-3 space-y-1 text-left"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Details Form -->
+        <section class="bg-surface-container-low rounded-2xl p-7 space-y-6">
+          <div>
+            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Product Title</label>
+            <input id="product-title" class="w-full bg-surface-container-lowest ghost-border focus:ring-2 focus:ring-primary focus:outline-none rounded-lg p-4 text-on-background font-semibold placeholder:text-outline-variant/60 transition-all" placeholder="e.g. Masterclass: Editorial Design 2024" type="text" value="Masterclass: Editorial Design 2024" oninput="updatePreview()"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Description</label>
+            <textarea id="product-desc" class="w-full bg-surface-container-lowest ghost-border focus:ring-2 focus:ring-primary focus:outline-none rounded-lg p-4 text-on-background font-medium placeholder:text-outline-variant/60 transition-all resize-none" rows="4" oninput="updatePreview()">Unlock the secrets of digital typography and asymmetrical layouts for modern storefronts.</textarea>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
+            <div>
+              <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Pricing (MYR)</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-primary text-sm">RM</span>
+                <input id="product-price" class="w-full bg-surface-container-lowest ghost-border focus:ring-2 focus:ring-primary focus:outline-none rounded-lg p-4 pl-12 text-on-background font-bold text-lg transition-all" placeholder="0.00" type="number" value="49" min="0" oninput="updatePreview()"/>
+              </div>
+            </div>
+            <div class="bg-surface-container-highest/50 rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-on-background">DuitNow / FPX</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">Enable instant local bank transfers</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input checked class="sr-only peer" type="checkbox"/>
+                <div class="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Preview -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-6 space-y-5">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Live Preview</h3>
+          </div>
+          <div class="bg-white rounded-3xl overflow-hidden editorial-shadow hover:-rotate-1 transition-transform duration-500">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden relative">
+              <img alt="Product" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfWDSmc0UMZ3_00rmkVgbVfb65xrs9e3VR5eSAAgMo92Y1xuEeNEuTKhDbalU81eRp1XrhRfXKNqGvV15ZU6yxMqRzJ0PKus7sdWAmZk68N-QPJznyJaFi7FexIkDgb6o-NBr3z8IxXU-JUpOrcJ9yrgfVNHrpcwMFQ0TUnixmuUee2nio3aIuFDgTG6amciysljZBvYJd9LXibo21DZTs6XOvufcJ7Q5OTzV_hjRlPvJaxAcrqkjfU5tcjyvgz33Wt-gMQikGsYE"/>
+              <div class="absolute top-3 right-3 glass-panel px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings:'FILL' 1">verified</span>
+                <span class="text-[10px] font-bold text-on-surface-variant">SenangStore Verified</span>
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex justify-between items-start gap-2">
+                <h2 id="preview-title" class="text-lg font-extrabold text-on-background leading-tight">Masterclass: Editorial Design 2024</h2>
+                <span id="preview-price" class="text-lg font-black text-primary shrink-0">RM49</span>
+              </div>
+              <p id="preview-desc" class="text-sm text-on-surface-variant leading-relaxed">Unlock the secrets of digital typography and asymmetrical layouts for modern storefronts.</p>
+              <div class="pt-3 flex gap-2">
+                <div class="px-3 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant uppercase">ZIP • 142MB</div>
+                <div class="px-3 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant uppercase">15 Lessons</div>
+              </div>
+              <a href="/checkout.html" class="block w-full mt-3 py-3 rounded-xl bg-secondary-container text-on-secondary-container font-black text-sm uppercase tracking-widest text-center hover:opacity-90 transition-opacity">
+                Unlock Access
+              </a>
+            </div>
+          </div>
+          <!-- Link card -->
+          <div class="bg-tertiary-fixed/30 rounded-2xl p-4 flex items-center justify-between border border-tertiary-fixed/60">
+            <div class="overflow-hidden">
+              <p class="text-[10px] font-bold text-tertiary uppercase tracking-wider mb-1">Generated Checkout Link</p>
+              <p id="checkout-link" class="text-sm font-semibold text-on-surface truncate">senang.store/creators/masterclass-2024</p>
+            </div>
+            <button onclick="copyLink()" id="copy-btn" class="p-2.5 rounded-xl bg-white text-tertiary editorial-shadow hover:bg-tertiary hover:text-white transition-all">
+              <span class="material-symbols-outlined">content_copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg border-t border-slate-100 flex justify-around items-center px-4 pb-4 pt-2">
+  <a class="flex flex-col items-center text-slate-400" href="/dashboard.html">
+    <span class="material-symbols-outlined text-xl">home</span>
+    <span class="text-[10px] font-bold uppercase">Home</span>
+  </a>
+  <a class="flex flex-col items-center bg-teal-50 text-teal-700 rounded-xl px-3 py-1" href="/product-editor.html">
+    <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1">inventory_2</span>
+    <span class="text-[10px] font-bold uppercase">Products</span>
+  </a>
+  <a class="flex flex-col items-center text-slate-400" href="/storefront.html">
+    <span class="material-symbols-outlined text-xl">storefront</span>
+    <span class="text-[10px] font-bold uppercase">Store</span>
+  </a>
+  <a class="flex flex-col items-center text-slate-400" href="#">
+    <span class="material-symbols-outlined text-xl">person</span>
+    <span class="text-[10px] font-bold uppercase">Account</span>
+  </a>
+</nav>
+
+<script>
+function updatePreview(){
+  const t=document.getElementById('product-title').value||'Your Product Title';
+  const d=document.getElementById('product-desc').value||'Your product description...';
+  const p=parseFloat(document.getElementById('product-price').value)||0;
+  document.getElementById('preview-title').textContent=t;
+  document.getElementById('preview-desc').textContent=d;
+  document.getElementById('preview-price').textContent='RM'+p.toFixed(0);
+  const slug=t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+  document.getElementById('checkout-link').textContent='senang.store/creators/'+slug;
+}
+function copyLink(){
+  const link=document.getElementById('checkout-link').textContent;
+  navigator.clipboard.writeText('https://'+link).then(()=>{
+    const btn=document.getElementById('copy-btn');
+    btn.innerHTML='<span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">check</span>';
+    setTimeout(()=>{btn.innerHTML='<span class="material-symbols-outlined">content_copy</span>';},2000);
+  });
+}
+function handlePublish(){
+  const btn=document.getElementById('publish-btn');
+  btn.textContent='Publishing…';btn.disabled=true;
+  setTimeout(()=>{btn.textContent='✓ Published!';btn.classList.add('bg-green-600');setTimeout(()=>{btn.textContent='Publish Product';btn.disabled=false;btn.classList.remove('bg-green-600');},3000);},1200);
+}
+function handleDiscard(){if(confirm('Discard changes?')){document.getElementById('product-title').value='';document.getElementById('product-desc').value='';document.getElementById('product-price').value='';updatePreview();}}
+const di=document.getElementById('drop-inner');
+['dragenter','dragover'].forEach(e=>di.addEventListener(e,ev=>{ev.preventDefault();di.classList.add('drag-over');}));
+['dragleave','drop'].forEach(e=>di.addEventListener(e,ev=>{ev.preventDefault();di.classList.remove('drag-over');}));
+di.addEventListener('drop',ev=>handleFiles(ev.dataTransfer.files));
+document.getElementById('file-input').addEventListener('change',function(){handleFiles(this.files);});
+function handleFiles(files){
+  const list=document.getElementById('file-list');list.innerHTML='';
+  Array.from(files).forEach(f=>{
+    const size=(f.size/1024/1024).toFixed(2)+' MB';
+    list.innerHTML+=`<div class="flex items-center gap-2 text-xs text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-lg"><span class="material-symbols-outlined text-sm text-primary">description</span><span class="font-medium truncate max-w-[200px]">${f.name}</span><span class="ml-auto text-slate-400">${size}</span></div>`;
+  });
+}
+updatePreview();
+</script>
+</body></html>

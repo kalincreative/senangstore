@@ -1,0 +1,12 @@
+{
+  "name": "senangstore-skills",
+  "version": "1.0.0",
+  "description": "AI companion skill plugin for SenangStore — enables memory saving, session recall, and intelligent assistance for the SenangStore digital storefront project.",
+  "author": {
+    "name": "Faris",
+    "email": "faris@senangstore.com"
+  },
+  "created": "2026-04-19T12:14:14+08:00",
+  "skills_dir": "../skills",
+  "commands_dir": "../commands"
+}

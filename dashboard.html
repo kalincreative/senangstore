@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SenangStore — Merchant Dashboard</title>
+<meta name="description" content="Manage your SenangStore digital products, view sales analytics, and track transactions."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#00685f","primary-container": "#008378","primary-fixed": "#89f5e7","primary-fixed-dim": "#6bd8cb","on-primary": "#ffffff","on-primary-container": "#f4fffc","on-primary-fixed": "#00201d","on-primary-fixed-variant": "#005049",
+          "secondary": "#855300","secondary-container": "#fea619","secondary-fixed": "#ffddb8","secondary-fixed-dim": "#ffb95f","on-secondary": "#ffffff","on-secondary-container": "#684000","on-secondary-fixed": "#2a1700","on-secondary-fixed-variant": "#653e00",
+          "tertiary": "#4648d4","tertiary-container": "#6063ee","tertiary-fixed": "#e1e0ff","tertiary-fixed-dim": "#c0c1ff","on-tertiary": "#ffffff","on-tertiary-container": "#fffbff","on-tertiary-fixed": "#07006c","on-tertiary-fixed-variant": "#2f2ebe",
+          "error": "#ba1a1a","error-container": "#ffdad6","on-error": "#ffffff","on-error-container": "#93000a",
+          "surface": "#f9f9ff","surface-dim": "#cfdaf2","surface-bright": "#f9f9ff","surface-container-lowest": "#ffffff","surface-container-low": "#f0f3ff","surface-container": "#e7eeff","surface-container-high": "#dee8ff","surface-container-highest": "#d8e3fb","surface-variant": "#d8e3fb","surface-tint": "#006a61",
+          "on-surface": "#111c2d","on-surface-variant": "#3d4947","on-background": "#111c2d","background": "#f9f9ff","outline": "#6d7a77","outline-variant": "#bcc9c6","inverse-surface": "#263143","inverse-on-surface": "#ecf1ff","inverse-primary": "#6bd8cb",
+        },
+        fontFamily: { headline: ["Plus Jakarta Sans"], body: ["Manrope"], label: ["Manrope"] },
+        borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: 'Manrope', sans-serif; background-color: #f9f9ff; color: #111c2d; }
+  .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .bar-hover { transition: height 0.4s cubic-bezier(.4,0,.2,1), background 0.2s; }
+  .bar-hover:hover { filter: brightness(1.15); }
+</style>
+</head>
+<body class="bg-surface text-on-surface">
+
+<!-- Top Nav -->
+<header class="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 h-16">
+  <div class="flex items-center gap-8">
+    <a href="/" class="text-xl font-bold tracking-tight text-teal-800 font-headline">SenangStore</a>
+    <div class="hidden md:flex relative">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+      <input id="search-input" class="bg-surface-container-low border-none rounded-lg pl-9 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64 transition-all outline-none" placeholder="Search products..." type="text"/>
+    </div>
+  </div>
+  <nav class="hidden md:flex gap-6 items-center font-headline font-medium text-sm">
+    <a class="text-teal-700 border-b-2 border-teal-600 pb-1" href="/dashboard.html">Dashboard</a>
+    <a class="text-slate-500 hover:text-teal-600 transition-colors pb-1" href="/product-editor.html">Products</a>
+    <a class="text-slate-500 hover:text-teal-600 transition-colors pb-1" href="/storefront.html">Storefront</a>
+  </nav>
+  <div class="flex items-center gap-3">
+    <button id="notif-btn" class="p-2 text-slate-500 hover:text-primary transition-colors relative">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary-container rounded-full"></span>
+    </button>
+    <div class="w-8 h-8 rounded-full overflow-hidden bg-slate-200 cursor-pointer ring-2 ring-transparent hover:ring-primary transition-all">
+      <img alt="Merchant Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6uRqHUW6g0LO8Pl5i4OW-e4wYJ8V-RvcHkOvsziCUk6ID1yiUmOe2K16ZEzn2xTKlG_XrRDi78Mf9JRtqdRZlrl3zBs4XJzqO4ue4jmprrVVnJ6_MimvNhcpJEmmFubLx04q1TwB5yXKEoTLUkeDDO4f0A9APUeW67S6PtJzIlG0wmN5ZBe4CjpzFyzNRnNrhLyv1-JQ3YZioTjuD-Fan6PT3XMbP7dOPG9792R4Tib-lei2TjeU4uFUkBr0QdoPUySweIFRHE10"/>
+    </div>
+  </div>
+</header>
+
+<div class="flex pt-16 min-h-screen">
+  <!-- Sidebar -->
+  <aside class="hidden md:flex flex-col h-[calc(100vh-64px)] w-60 p-4 gap-2 bg-slate-50 border-r border-slate-100 sticky top-16 shrink-0">
+    <div class="flex items-center gap-3 px-3 py-5 mb-1">
+      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-headline font-black text-lg">S</div>
+      <div>
+        <h2 class="text-base font-black text-teal-800 leading-tight font-headline">SenangStore</h2>
+        <p class="text-xs text-slate-500 font-medium">Creator Merchant</p>
+      </div>
+    </div>
+    <nav class="flex-1 space-y-0.5">
+      <a id="nav-dashboard" class="flex items-center gap-3 bg-white text-teal-700 shadow-sm rounded-lg py-2.5 px-3 font-headline text-sm font-semibold" href="/dashboard.html">
+        <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1">dashboard</span> Dashboard
+      </a>
+      <a class="flex items-center gap-3 text-slate-500 py-2.5 px-3 font-headline text-sm hover:bg-slate-200/50 transition-all rounded-lg" href="/product-editor.html">
+        <span class="material-symbols-outlined text-xl">inventory_2</span> Products
+      </a>
+      <a class="flex items-center gap-3 text-slate-500 py-2.5 px-3 font-headline text-sm hover:bg-slate-200/50 transition-all rounded-lg" href="/checkout.html">
+        <span class="material-symbols-outlined text-xl">payments</span> Payments
+      </a>
+      <a class="flex items-center gap-3 text-slate-500 py-2.5 px-3 font-headline text-sm hover:bg-slate-200/50 transition-all rounded-lg" href="#">
+        <span class="material-symbols-outlined text-xl">settings</span> Settings
+      </a>
+    </nav>
+    <div class="mt-auto p-3 bg-surface-container-low rounded-xl">
+      <p class="text-xs font-bold text-primary mb-2 uppercase tracking-widest">Quick Access</p>
+      <a href="/product-editor.html" class="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-primary to-primary-container text-white py-2.5 rounded-lg text-sm font-bold shadow-lg hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-sm">add</span> New Product
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 p-6 md:p-10 max-w-7xl mx-auto w-full">
+    <!-- Hero Header -->
+    <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-xl">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-2">Overview</p>
+        <h1 class="text-3xl md:text-4xl font-headline font-extrabold text-on-surface tracking-tight leading-tight mb-3">
+          Selamat Pagi, <span class="text-primary">Faris</span> 👋
+        </h1>
+        <p class="text-slate-500 text-base">Your store's digital inventory grew by <strong class="text-primary">12%</strong> this week. Let's keep the momentum going.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="/storefront.html" class="flex items-center gap-2 px-5 py-2.5 bg-secondary-container text-on-secondary-container font-bold rounded-lg hover:opacity-90 transition-all shadow-md text-sm">
+          <span class="material-symbols-outlined text-lg">visibility</span> View Storefront
+        </a>
+        <button id="analytics-btn" class="flex items-center gap-2 px-5 py-2.5 bg-tertiary-container text-on-tertiary-container font-bold rounded-lg hover:opacity-90 transition-all shadow-md text-sm">
+          <span class="material-symbols-outlined text-lg">bolt</span> Analytics
+        </button>
+      </div>
+    </header>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+      <!-- Sales Overview -->
+      <section class="md:col-span-8 bg-surface-container-low rounded-3xl p-8 flex flex-col justify-between overflow-hidden relative group">
+        <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl transition-transform group-hover:scale-110 pointer-events-none"></div>
+        <div class="relative z-10">
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-4 py-1 bg-primary-fixed text-on-primary-fixed text-xs font-bold rounded-full uppercase tracking-widest">Total Sales</span>
+            <span class="text-primary font-bold flex items-center gap-1 text-sm">
+              <span class="material-symbols-outlined text-sm">trending_up</span>+24.5%
+            </span>
+          </div>
+          <p class="text-slate-500 font-medium text-sm mb-1">Revenue Performance</p>
+          <h2 class="text-5xl font-headline font-black text-on-surface">MYR 12,450.80</h2>
+          <p class="text-slate-400 text-xs mt-2">Payout scheduled for Friday, Oct 27</p>
+        </div>
+        <div class="mt-8 h-28 flex items-end gap-1.5" id="chart-bars">
+          <!-- bars injected by JS -->
+        </div>
+        <div class="flex justify-between text-xs text-slate-400 mt-2 px-1">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <div class="md:col-span-4 grid grid-rows-2 gap-6">
+        <div class="bg-secondary-container/10 border border-secondary-container/30 rounded-3xl p-6 flex flex-col justify-center hover:bg-secondary-container/15 transition-colors">
+          <span class="material-symbols-outlined text-secondary mb-2 text-3xl" style="font-variation-settings:'FILL' 1">shopping_bag</span>
+          <h3 class="text-xs font-bold text-on-secondary-container uppercase tracking-wider mb-1">Active Orders</h3>
+          <p class="text-4xl font-headline font-extrabold text-on-surface">42</p>
+          <p class="text-xs text-slate-400 mt-1">↑ 8 new today</p>
+        </div>
+        <div class="bg-tertiary-container/10 border border-tertiary-container/30 rounded-3xl p-6 flex flex-col justify-center hover:bg-tertiary-container/15 transition-colors">
+          <span class="material-symbols-outlined text-tertiary mb-2 text-3xl" style="font-variation-settings:'FILL' 1">group</span>
+          <h3 class="text-xs font-bold text-on-tertiary-container uppercase tracking-wider mb-1">Unique Buyers</h3>
+          <p class="text-4xl font-headline font-extrabold text-on-surface">1,892</p>
+          <p class="text-xs text-slate-400 mt-1">↑ 12% vs last month</p>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <section class="md:col-span-6 bg-surface-container-lowest rounded-3xl p-8 shadow-sm">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-lg font-headline font-bold text-on-surface">Recent Transactions</h3>
+          <button class="text-primary text-sm font-bold hover:underline">See All</button>
+        </div>
+        <div class="space-y-5" id="transactions-list">
+          <!-- injected by JS -->
+        </div>
+      </section>
+
+      <!-- Active Products -->
+      <section class="md:col-span-6 bg-surface-container-lowest rounded-3xl p-8 shadow-sm">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-lg font-headline font-bold text-on-surface">Active Products</h3>
+          <a href="/product-editor.html" class="text-primary text-sm font-bold hover:underline">Manage</a>
+        </div>
+        <div class="space-y-4" id="products-list">
+          <!-- injected by JS -->
+        </div>
+      </section>
+
+    </div>
+    <div class="h-24 md:hidden"></div>
+  </main>
+</div>
+
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-white/90 backdrop-blur-lg shadow-[0_-4px_12px_rgba(0,0,0,0.06)] rounded-t-2xl border-t border-slate-100">
+  <a class="flex flex-col items-center justify-center bg-teal-50 text-teal-700 rounded-xl px-3 py-1" href="/dashboard.html">
+    <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1">home</span>
+    <span class="text-[10px] font-headline font-bold uppercase tracking-wider">Home</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400" href="/storefront.html">
+    <span class="material-symbols-outlined text-xl">storefront</span>
+    <span class="text-[10px] font-headline font-bold uppercase tracking-wider">Store</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400" href="/product-editor.html">
+    <span class="material-symbols-outlined text-xl">inventory_2</span>
+    <span class="text-[10px] font-headline font-bold uppercase tracking-wider">Products</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400" href="#">
+    <span class="material-symbols-outlined text-xl">person</span>
+    <span class="text-[10px] font-headline font-bold uppercase tracking-wider">Account</span>
+  </a>
+</nav>
+
+<script>
+// Chart bars
+const heights = [40, 60, 45, 75, 90, 100, 85];
+const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const chartEl = document.getElementById('chart-bars');
+heights.forEach((h, i) => {
+  const bar = document.createElement('div');
+  bar.style.cssText = `height:0%;flex:1;border-radius:6px 6px 0 0;background:rgba(0,131,120,0.25);cursor:pointer;transition:height 0.6s cubic-bezier(.4,0,.2,1) ${i*60}ms, background 0.2s`;
+  bar.title = `${days[i]}: MYR ${(1200 + i * 400).toLocaleString()}`;
+  bar.addEventListener('mouseenter', () => bar.style.background = 'rgba(0,104,95,0.55)');
+  bar.addEventListener('mouseleave', () => bar.style.background = 'rgba(0,131,120,0.25)');
+  chartEl.appendChild(bar);
+  requestAnimationFrame(() => setTimeout(() => bar.style.height = h + '%', 50));
+});
+
+// Transactions
+const txns = [
+  { name: 'Ahmad Ibrahim', product: 'Masterclass PDF Bundle', amount: '+MYR 89.00' },
+  { name: 'Siti Nurhaliza', product: 'Lightroom Presets Pack', amount: '+MYR 120.00' },
+  { name: 'Daniel Tan', product: 'UX Design Workbook', amount: '+MYR 45.00' },
+  { name: 'Nurul Ain', product: 'Social Media Kit', amount: '+MYR 67.00' },
+];
+const txList = document.getElementById('transactions-list');
+txns.forEach(tx => {
+  txList.innerHTML += `
+    <div class="flex items-center justify-between group cursor-pointer p-2 rounded-xl hover:bg-surface-container-low transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-surface-container-low flex items-center justify-center text-slate-500 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-lg">person</span>
+        </div>
+        <div>
+          <p class="font-bold text-on-surface text-sm">${tx.name}</p>
+          <p class="text-xs text-slate-400">${tx.product}</p>
+        </div>
+      </div>
+      <p class="font-bold text-on-surface text-sm">${tx.amount}</p>
+    </div>`;
+});
+
+// Products
+const products = [
+  { name: 'Masterclass Bundle', sales: '124 Sales', price: 'MYR 299', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD2B8JMntlitR23KxAj0oFdncAFGwhGpuz8pANqOWKUGF_eycy7X7MLaosRJ1CeftFpR16gYS3TaeHwMhip9dwPP78Ly5mJBKgrgAV4YRMRn81ezBwC_FdPhVGVLsI3E-81goBVC_c4R8Hp2R7T_6u29je4C1fjxHZhzTaGKEbO8Madd8OnPi0ixVVB2ISjJd1DtL1rA9uvVL-vkxX4q7xE6lJ-nWdh1OulTlS_vd52UIyXe942h_c6nsjK1Ot-GhVB_12QYNcqVcQ' },
+  { name: 'UX Design Guide', sales: '56 Sales', price: 'MYR 45', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDn9AqRSVozGDxEyEmjRPn09gCKeBpx0j4BNEO5Ts20JjiwKj44y3u9IG5l11DZKfgeWgWaL4258zvnOOF9VdpWjg7VqTenYAA2gEvl4f-JD3L6HRTzUuYm_JZTR4x_QczRl1L6fSXoDNktRMWyqRRaDEXG5LaQu1oT1cexGdAlAgU8FLjWRfVvIo90l7RwKAW5wE6MZ5go9y4X-n5DNsAmcxKlIr-gfhHNkneqWqJo1SpZc9mi9c99JtEJllfojR7j4U8XU0udKNw' },
+  { name: 'Lightroom Preset Pack', sales: '88 Sales', price: 'MYR 35', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfWDSmc0UMZ3_00rmkVgbVfb65xrs9e3VR5eSAAgMo92Y1xuEeNEuTKhDbalU81eRp1XrhRfXKNqGvV15ZU6yxMqRzJ0PKus7sdWAmZk68N-QPJznyJaFi7FexIkDgb6o-NBr3z8IxXU-JUpOrcJ9yrgfVNHrpcwMFQ0TUnixmuUee2nio3aIuFDgTG6amciysljZBvYJd9LXibo21DZTs6XOvufcJ7Q5OTzV_hjRlPvJaxAcrqkjfU5tcjyvgz33Wt-gMQikGsYE' },
+];
+const prodList = document.getElementById('products-list');
+products.forEach(p => {
+  prodList.innerHTML += `
+    <div class="flex items-center gap-4 p-3 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors cursor-pointer">
+      <div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm bg-white shrink-0">
+        <img class="w-full h-full object-cover" src="${p.img}" alt="${p.name}"/>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h4 class="font-bold text-on-surface text-sm truncate">${p.name}</h4>
+        <div class="flex items-center gap-2 mt-0.5">
+          <span class="text-xs text-slate-500">${p.sales}</span>
+          <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+          <span class="text-xs font-bold text-primary">Active</span>
+        </div>
+      </div>
+      <p class="font-headline font-bold text-primary text-sm shrink-0">${p.price}</p>
+    </div>`;
+});
+</script>
+</body></html>

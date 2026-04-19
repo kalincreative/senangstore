@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SenangStore Merchant Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#653e00",
+                      "on-error-container": "#93000a",
+                      "on-background": "#111c2d",
+                      "on-primary-fixed": "#00201d",
+                      "primary-container": "#008378",
+                      "on-secondary-fixed": "#2a1700",
+                      "primary": "#00685f",
+                      "secondary-fixed": "#ffddb8",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#2f2ebe",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#684000",
+                      "surface-container-low": "#f0f3ff",
+                      "on-surface-variant": "#3d4947",
+                      "surface-container": "#e7eeff",
+                      "secondary-fixed-dim": "#ffb95f",
+                      "primary-fixed-dim": "#6bd8cb",
+                      "surface": "#f9f9ff",
+                      "tertiary-fixed": "#e1e0ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#fffbff",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#4648d4",
+                      "on-primary-container": "#f4fffc",
+                      "inverse-primary": "#6bd8cb",
+                      "surface-container-high": "#dee8ff",
+                      "surface-dim": "#cfdaf2",
+                      "on-tertiary-fixed": "#07006c",
+                      "surface-tint": "#006a61",
+                      "primary-fixed": "#89f5e7",
+                      "tertiary-container": "#6063ee",
+                      "surface-bright": "#f9f9ff",
+                      "secondary-container": "#fea619",
+                      "inverse-surface": "#263143",
+                      "on-surface": "#111c2d",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#c0c1ff",
+                      "on-primary": "#ffffff",
+                      "background": "#f9f9ff",
+                      "on-primary-fixed-variant": "#005049",
+                      "surface-variant": "#d8e3fb",
+                      "surface-container-highest": "#d8e3fb",
+                      "inverse-on-surface": "#ecf1ff",
+                      "outline-variant": "#bcc9c6",
+                      "outline": "#6d7a77",
+                      "error-container": "#ffdad6",
+                      "secondary": "#855300"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Plus Jakarta Sans"],
+                      "body": ["Manrope"],
+                      "label": ["Manrope"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f9f9ff; color: #111c2d; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-teal-800 dark:text-teal-400 font-headline">SenangStore</span>
+<div class="hidden md:flex relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search products..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex gap-6 items-center font-headline font-medium">
+<a class="text-teal-700 dark:text-teal-400 border-b-2 border-teal-600 pb-1" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors pb-1" href="#">Inventory</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors pb-1" href="#">Analytics</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-200">
+<img alt="Merchant Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional smiling merchant in a clean studio setting with warm natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6uRqHUW6g0LO8Pl5i4OW-e4wYJ8V-RvcHkOvsziCUk6ID1yiUmOe2K16ZEzn2xTKlG_XrRDi78Mf9JRtqdRZlrl3zBs4XJzqO4ue4jmprrVVnJ6_MimvNhcpJEmmFubLx04q1TwB5yXKEoTLUkeDDO4f0A9APUeW67S6PtJzIlG0wmN5ZBe4CjpzFyzNRnNrhLyv1-JQ3YZioTjuD-Fan6PT3XMbP7dOPG9792R4Tib-lei2TjeU4uFUkBr0QdoPUySweIFRHE10"/>
+</div>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-64px)] w-64 p-4 gap-2 bg-slate-50 dark:bg-slate-950 border-r-0 sticky top-16">
+<div class="flex items-center gap-3 px-4 py-6 mb-2">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-teal-800 dark:text-teal-400 leading-tight">SenangStore</h2>
+<p class="text-xs text-slate-500 font-medium">Creator Merchant</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 bg-white dark:bg-slate-900 text-teal-700 dark:text-teal-300 shadow-sm rounded-lg py-3 px-4 font-headline text-sm active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 py-3 px-4 font-headline text-sm hover:bg-slate-200/50 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                    Products
+                </a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 py-3 px-4 font-headline text-sm hover:bg-slate-200/50 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+                    Payments
+                </a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 py-3 px-4 font-headline text-sm hover:bg-slate-200/50 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-xl">
+<p class="text-xs font-bold text-primary mb-2 uppercase tracking-widest">Quick Access</p>
+<button class="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-lg text-sm font-bold shadow-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Product
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-6 md:p-10 lg:p-16 max-w-7xl mx-auto w-full">
+<!-- Hero Header -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-xl">
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight leading-tight mb-4">
+                        Selamat Pagi, <span class="text-primary">Faris</span>
+</h1>
+<p class="text-slate-500 font-body text-lg">Your store's digital inventory grew by 12% this week. Let's keep the momentum going.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-6 py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg hover:opacity-90 transition-all shadow-md">
+<span class="material-symbols-outlined">visibility</span>
+                        View Storefront
+                    </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-tertiary-container text-on-tertiary-container font-bold rounded-lg hover:opacity-90 transition-all shadow-md">
+<span class="material-symbols-outlined">bolt</span>
+                        Analytics
+                    </button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Sales Overview (Large) -->
+<section class="md:col-span-8 bg-surface-container-low rounded-3xl p-8 flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl transition-transform group-hover:scale-110"></div>
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-8">
+<span class="px-4 py-1 bg-primary-fixed text-on-primary-fixed text-xs font-bold rounded-full uppercase tracking-widest">Total Sales</span>
+<span class="text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                +24.5%
+                            </span>
+</div>
+<div class="mb-2">
+<p class="text-body text-slate-500 font-medium mb-1">Revenue Performance</p>
+<h2 class="text-6xl font-headline font-black text-on-surface">MYR 12,450.80</h2>
+</div>
+<p class="text-slate-400 text-sm">Payout scheduled for Friday, Oct 27</p>
+</div>
+<div class="mt-12 h-32 flex items-end gap-2">
+<!-- Simplified Visual Graph -->
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 40%"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 60%"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 45%"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 75%"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 90%"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 100%"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg transition-all hover:bg-primary-container/40" style="height: 85%"></div>
+</div>
+</section>
+<!-- Summary Stats (Small) -->
+<div class="md:col-span-4 grid grid-rows-2 gap-6">
+<div class="bg-secondary-container/10 border border-secondary-container/20 rounded-3xl p-6 flex flex-col justify-center">
+<span class="material-symbols-outlined text-secondary mb-2" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<h3 class="text-sm font-bold text-on-secondary-container uppercase tracking-wider mb-1">Active Orders</h3>
+<p class="text-4xl font-headline font-extrabold text-on-surface">42</p>
+</div>
+<div class="bg-tertiary-container/10 border border-tertiary-container/20 rounded-3xl p-6 flex flex-col justify-center">
+<span class="material-symbols-outlined text-tertiary mb-2" style="font-variation-settings: 'FILL' 1;">group</span>
+<h3 class="text-sm font-bold text-on-tertiary-container uppercase tracking-wider mb-1">Unique Buyers</h3>
+<p class="text-4xl font-headline font-extrabold text-on-surface">1,892</p>
+</div>
+</div>
+<!-- Recent Transactions -->
+<section class="md:col-span-6 bg-surface-container-lowest rounded-3xl p-8">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-headline font-bold text-on-surface">Recent Transactions</h3>
+<button class="text-primary text-sm font-bold hover:underline">See All</button>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-low flex items-center justify-center text-slate-600 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Ahmad Ibrahim</p>
+<p class="text-xs text-slate-400">Masterclass PDF Bundle</p>
+</div>
+</div>
+<p class="font-bold text-on-surface">+MYR 89.00</p>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-low flex items-center justify-center text-slate-600 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Siti Nurhaliza</p>
+<p class="text-xs text-slate-400">Lightroom Presets Pack</p>
+</div>
+</div>
+<p class="font-bold text-on-surface">+MYR 120.00</p>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-low flex items-center justify-center text-slate-600 transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Daniel Tan</p>
+<p class="text-xs text-slate-400">UX Design Workbook</p>
+</div>
+</div>
+<p class="font-bold text-on-surface">+MYR 45.00</p>
+</div>
+</div>
+</section>
+<!-- Active Digital Products -->
+<section class="md:col-span-6 bg-surface-container-lowest rounded-3xl p-8">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-headline font-bold text-on-surface">Active Products</h3>
+<button class="text-primary text-sm font-bold hover:underline">Manage</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors">
+<div class="w-16 h-16 rounded-xl overflow-hidden shadow-sm bg-white">
+<img class="w-full h-full object-cover" data-alt="Vibrant abstract digital art with flowing teal and indigo colors representing creative masterclass theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2B8JMntlitR23KxAj0oFdncAFGwhGpuz8pANqOWKUGF_eycy7X7MLaosRJ1CeftFpR16gYS3TaeHwMhip9dwPP78Ly5mJBKgrgAV4YRMRn81ezBwC_FdPhVGVLsI3E-81goBVC_c4R8Hp2R7T_6u29je4C1fjxHZhzTaGKEbO8Madd8OnPi0ixVVB2ISjJd1DtL1rA9uvVL-vkxX4q7xE6lJ-nWdh1OulTlS_vd52UIyXe942h_c6nsjK1Ot-GhVB_12QYNcqVcQ"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Masterclass Bundle</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-slate-500">124 Sales</span>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<span class="text-xs font-bold text-primary">Active</span>
+</div>
+</div>
+<p class="font-headline font-bold text-primary">MYR 299</p>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors">
+<div class="w-16 h-16 rounded-xl overflow-hidden shadow-sm bg-white">
+<img class="w-full h-full object-cover" data-alt="Clean minimalist workspace with laptop and coffee cup representing digital workbook and professional efficiency" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn9AqRSVozGDxEyEmjRPn09gCKeBpx0j4BNEO5Ts20JjiwKj44y3u9IG5l11DZKfgeWgWaL4258zvnOOF9VdpWjg7VqTenYAA2gEvl4f-JD3L6HRTzUuYm_JZTR4x_QczRl1L6fSXoDNktRMWyqRRaDEXG5LaQu1oT1cexGdAlAgU8FLjWRfVvIo90l7RwKAW5wE6MZ5go9y4X-n5DNsAmcxKlIr-gfhHNkneqWqJo1SpZc9mi9c99JtEJllfojR7j4U8XU0udKNw"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">UX Design Guide</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-slate-500">56 Sales</span>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<span class="text-xs font-bold text-primary">Active</span>
+</div>
+</div>
+<p class="font-headline font-bold text-primary">MYR 45</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Empty space for Bottom Nav Padding -->
+<div class="h-24 md:hidden"></div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe pt-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-2xl border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-xl px-4 py-1 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-headline font-bold uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-[10px] font-headline font-bold uppercase tracking-wider">Store</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-[10px] font-headline font-bold uppercase tracking-wider">Sales</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-headline font-bold uppercase tracking-wider">Account</span>
+</a>
+</nav>
+</body></html>

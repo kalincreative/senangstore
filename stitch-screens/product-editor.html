@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Editor | SenangStore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-error-container": "#93000a",
+                        "on-background": "#111c2d",
+                        "on-primary-fixed": "#00201d",
+                        "primary-container": "#008378",
+                        "on-secondary-fixed": "#2a1700",
+                        "primary": "#00685f",
+                        "secondary-fixed": "#ffddb8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#684000",
+                        "surface-container-low": "#f0f3ff",
+                        "on-surface-variant": "#3d4947",
+                        "surface-container": "#e7eeff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "surface": "#f9f9ff",
+                        "tertiary-fixed": "#e1e0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#4648d4",
+                        "on-primary-container": "#f4fffc",
+                        "inverse-primary": "#6bd8cb",
+                        "surface-container-high": "#dee8ff",
+                        "surface-dim": "#cfdaf2",
+                        "on-tertiary-fixed": "#07006c",
+                        "surface-tint": "#006a61",
+                        "primary-fixed": "#89f5e7",
+                        "tertiary-container": "#6063ee",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-container": "#fea619",
+                        "inverse-surface": "#263143",
+                        "on-surface": "#111c2d",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#005049",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-highest": "#d8e3fb",
+                        "inverse-on-surface": "#ecf1ff",
+                        "outline-variant": "#bcc9c6",
+                        "outline": "#6d7a77",
+                        "error-container": "#ffdad6",
+                        "secondary": "#855300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 24px 40px -4px rgba(17, 28, 45, 0.06);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(188, 201, 198, 0.2);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Desktop Side Navigation -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 p-4 gap-2 bg-slate-50 z-50">
+<div class="flex items-center gap-3 px-4 py-6 mb-4">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold">S</div>
+<div>
+<h2 class="text-lg font-black text-teal-800 leading-none">SenangStore</h2>
+<p class="text-xs text-slate-500 font-medium">Creator Merchant</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-slate-500 py-3 px-4 hover:bg-slate-200/50 transition-all rounded-lg active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Dashboard</span>
+</a>
+<!-- Active State: Products -->
+<a class="flex items-center gap-3 bg-white text-teal-700 shadow-sm rounded-lg py-3 px-4 active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm font-semibold">Products</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 py-3 px-4 hover:bg-slate-200/50 transition-all rounded-lg active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Payments</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 py-3 px-4 hover:bg-slate-200/50 transition-all rounded-lg active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4">
+<button class="w-full py-3 rounded-lg bg-primary-container text-on-primary-container font-bold text-sm flex items-center justify-center gap-2 editorial-shadow">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Product
+            </button>
+</div>
+</aside>
+<!-- Mobile Top Navigation -->
+<header class="md:hidden fixed top-0 w-full z-40 bg-white/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 h-16">
+<span class="text-xl font-bold tracking-tight text-teal-800">SenangStore</span>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-teal-700">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-200">
+<img alt="Merchant Profile" class="w-full h-full object-cover" data-alt="Portrait of a young creative entrepreneur with a warm smile in a natural lit studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk4lm9LWZ9wb5is9qbrXu5JMfpS6SOtCJb0xsnMQ9rk21WW7iOotjtpZPM68Dsuiiek5rbNyN5Kxz9tziDPKzJJD3Vi7magjZhh8Ojt2LquuUzRVZGKjPssI5lt6LAuRedtk-GeaPzg9iScGURa6XyzjUqBk0N7x26v1mht_0HoLeDbnWHdge2-xDLl-VjD4VWpcUNSckEbtYnRC_UC1b35G7HQZdI9esNgqeoNjHi2Qp-ZHqgWQI_YZurFDCj3AYPOVXU6ypY53I"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 md:pt-0 min-h-screen">
+<div class="max-w-6xl mx-auto px-6 md:px-12 py-12">
+<!-- Header Section (Editorial Layout) -->
+<div class="mb-16 md:flex md:items-end md:justify-between">
+<div>
+<nav class="flex items-center gap-2 text-outline mb-4 text-xs font-bold uppercase tracking-widest">
+<span>Store</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-primary">Editor</span>
+</nav>
+<h1 class="text-4xl md:text-5xl font-extrabold text-on-background tracking-tighter leading-tight max-w-xl">
+                        Design your <span class="text-primary italic">Digital Atelier</span>
+</h1>
+</div>
+<div class="mt-8 md:mt-0 flex gap-4">
+<button class="px-6 py-3 rounded-lg text-primary font-bold text-sm border-2 border-transparent hover:bg-surface-container-high transition-colors">Discard</button>
+<button class="px-8 py-3 rounded-lg bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm editorial-shadow active:scale-95 duration-150">Publish Product</button>
+</div>
+</div>
+<!-- Editor Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Form Column -->
+<div class="lg:col-span-7 space-y-12">
+<!-- File Upload Section -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">cloud_upload</span>
+                                Digital Assets
+                            </h3>
+<span class="text-[10px] bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-bold uppercase">Up to 2GB</span>
+</div>
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-1 bg-gradient-to-r from-tertiary/20 to-primary/20 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative bg-surface-container-lowest border-2 border-dashed border-outline-variant/30 rounded-xl p-12 text-center transition-all hover:border-primary/50 group-hover:bg-white">
+<span class="material-symbols-outlined text-5xl text-outline mb-4 group-hover:text-primary transition-colors">upload_file</span>
+<p class="text-on-surface font-bold">Drag &amp; Drop your assets</p>
+<p class="text-sm text-outline mt-1 font-medium">Supports PDF, ZIP, MP4, or JPEG</p>
+<button class="mt-6 px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-bold text-xs hover:bg-surface-container-high transition-colors">Browse Files</button>
+</div>
+</div>
+</section>
+<!-- Details Section -->
+<section class="bg-surface-container-low rounded-2xl p-8 space-y-8">
+<div class="space-y-6">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">Product Title</label>
+<input class="w-full bg-surface-container-lowest ghost-border focus:ring-2 focus:ring-primary focus:outline-none rounded-lg p-4 text-on-background font-semibold placeholder:text-outline-variant/60" placeholder="e.g. Masterclass: Editorial Design 2024" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">Description</label>
+<textarea class="w-full bg-surface-container-lowest ghost-border focus:ring-2 focus:ring-primary focus:outline-none rounded-lg p-4 text-on-background font-medium placeholder:text-outline-variant/60" placeholder="Describe the value of your digital product..." rows="4"></textarea>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">Pricing (MYR)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-primary">RM</span>
+<input class="w-full bg-surface-container-lowest ghost-border focus:ring-2 focus:ring-primary focus:outline-none rounded-lg p-4 pl-14 text-on-background font-bold text-xl" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="bg-surface-container-highest/50 rounded-xl p-4 flex items-center justify-between">
+<div>
+<h4 class="text-sm font-bold text-on-background">DuitNow / FPX</h4>
+<p class="text-[11px] text-on-surface-variant font-medium">Enable instant local bank transfers</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Preview Column (Asymmetric) -->
+<div class="lg:col-span-5 relative">
+<div class="sticky top-24 space-y-8">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Live Preview</h3>
+</div>
+<!-- Preview Card -->
+<div class="bg-white rounded-3xl overflow-hidden editorial-shadow transition-transform hover:-rotate-1 duration-500">
+<div class="aspect-[4/3] bg-slate-100 overflow-hidden relative">
+<img alt="Product Visual" class="w-full h-full object-cover" data-alt="Abstract digital art featuring fluid geometric shapes in shades of teal, indigo and soft cream with organic texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfWDSmc0UMZ3_00rmkVgbVfb65xrs9e3VR5eSAAgMo92Y1xuEeNEuTKhDbalU81eRp1XrhRfXKNqGvV15ZU6yxMqRzJ0PKus7sdWAmZk68N-QPJznyJaFi7FexIkDgb6o-NBr3z8IxXU-JUpOrcJ9yrgfVNHrpcwMFQ0TUnixmuUee2nio3aIuFDgTG6amciysljZBvYJd9LXibo21DZTs6XOvufcJ7Q5OTzV_hjRlPvJaxAcrqkjfU5tcjyvgz33Wt-gMQikGsYE"/>
+<div class="absolute top-4 right-4 glass-panel px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+<span class="text-[10px] font-bold text-on-surface-variant">SenangStore Verified</span>
+</div>
+</div>
+<div class="p-8 space-y-4">
+<div class="flex justify-between items-start">
+<h2 class="text-2xl font-extrabold text-on-background leading-tight">Masterclass: Editorial Design 2024</h2>
+<span class="text-xl font-black text-primary">RM49</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Unlock the secrets of digital typography and asymmetrical layouts for modern storefronts.</p>
+<div class="pt-6 flex gap-2">
+<div class="px-3 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant uppercase">ZIP • 142MB</div>
+<div class="px-3 py-1 rounded bg-surface-container-low text-[10px] font-bold text-on-surface-variant uppercase">15 Lessons</div>
+</div>
+<button class="w-full mt-6 py-4 rounded-xl bg-secondary-container text-on-secondary-container font-black text-sm uppercase tracking-widest editorial-shadow">
+                                    Unlock Access
+                                </button>
+</div>
+</div>
+<!-- Share URL Card -->
+<div class="bg-tertiary-fixed/30 rounded-2xl p-6 flex items-center justify-between border border-tertiary-fixed/50">
+<div class="overflow-hidden">
+<p class="text-[10px] font-bold text-tertiary uppercase tracking-wider mb-1">Generated Checkout Link</p>
+<p class="text-sm font-semibold text-on-surface truncate">senang.store/creators/masterclass-2024</p>
+</div>
+<button class="p-3 rounded-xl bg-white text-tertiary editorial-shadow hover:bg-tertiary hover:text-white transition-all">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg border-t border-slate-100 flex justify-around items-center px-4 pb-safe pt-2 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-['Manrope'] font-bold uppercase tracking-wider">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-teal-50 text-teal-700 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-[10px] font-['Manrope'] font-bold uppercase tracking-wider">Store</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-[10px] font-['Manrope'] font-bold uppercase tracking-wider">Sales</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-['Manrope'] font-bold uppercase tracking-wider">Account</span>
+</div>
+</nav>
+</body></html>

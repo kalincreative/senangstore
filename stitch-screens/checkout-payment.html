@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | SenangStore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-error-container": "#93000a",
+                        "on-background": "#111c2d",
+                        "on-primary-fixed": "#00201d",
+                        "primary-container": "#008378",
+                        "on-secondary-fixed": "#2a1700",
+                        "primary": "#00685f",
+                        "secondary-fixed": "#ffddb8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#684000",
+                        "surface-container-low": "#f0f3ff",
+                        "on-surface-variant": "#3d4947",
+                        "surface-container": "#e7eeff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "surface": "#f9f9ff",
+                        "tertiary-fixed": "#e1e0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#4648d4",
+                        "on-primary-container": "#f4fffc",
+                        "inverse-primary": "#6bd8cb",
+                        "surface-container-high": "#dee8ff",
+                        "surface-dim": "#cfdaf2",
+                        "on-tertiary-fixed": "#07006c",
+                        "surface-tint": "#006a61",
+                        "primary-fixed": "#89f5e7",
+                        "tertiary-container": "#6063ee",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-container": "#fea619",
+                        "inverse-surface": "#263143",
+                        "on-surface": "#111c2d",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#005049",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-highest": "#d8e3fb",
+                        "inverse-on-surface": "#ecf1ff",
+                        "outline-variant": "#bcc9c6",
+                        "outline": "#6d7a77",
+                        "error-container": "#ffdad6",
+                        "secondary": "#855300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar (JSON Authority) -->
+<nav class="fixed top-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm h-16 flex justify-between items-center px-6">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-teal-800 dark:text-teal-400">SenangStore</span>
+<div class="hidden md:flex gap-6 font-['Plus_Jakarta_Sans'] font-medium">
+<span class="text-teal-700 dark:text-teal-400 border-b-2 border-teal-600 pb-1">Checkout</span>
+<span class="text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors cursor-pointer">Support</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500">help</span>
+<span class="material-symbols-outlined text-slate-500">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Merchant Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRDnKq-f4cqUhYsAGv_slyBQHlODvIAiZYgT9P3kacBLFYUTLygXD4Wm3P5Jq-2qjWT4wI6KQoXwcFSY5A-Z_0w0ONINJwXTHKhCFCEGjz0oQPnL8GgW7I4xY0eCDJ9kCP1YjJbSsFj79331s3h0CU9Er0ewj9XgmfSmNe_32jjmiIn55LX_EUBwXU3F8BPA3Ows2i1lbmZxX2vfd4FluYaNoLr1DUN94TEVt1qeouP6N6H4ki7UeFP6juk5aEnoDSvgsEZPJpX54"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 px-6 md:px-16 lg:px-32 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left: Editorial Product Summary -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<div class="relative">
+<h1 class="text-5xl font-extrabold tracking-tight text-on-surface leading-tight">
+                        Confirm your <br/><span class="text-primary">Acquisition.</span>
+</h1>
+<p class="text-body-md text-on-surface-variant mt-4 max-w-sm">
+                        Secure high-performance digital assets curated for Southeast Asian founders. Immediate delivery post-payment.
+                    </p>
+</div>
+<!-- Product Card (Asymmetric Layering) -->
+<div class="relative mt-8 group">
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-primary-container/20 rounded-xl -z-10 group-hover:rotate-12 transition-transform"></div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col gap-6 relative overflow-hidden">
+<div class="flex gap-6 items-center">
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Modern geometric 3D abstract digital asset with glowing neon teal lines on a dark background, professional and high-tech" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX4_mkLPVSqUojLWGAyJm8wsn8oqLqRyxkoYIfOji1VSFyE8CBkD-W-plkUkmyd8oY0QpPPDDCJ28ZV8xn6kOkkk3cy_FaFvybTpg4U9BHsoTjKI8zyazDqCi5JOXVZN3x6wXVOX-E5aMNSY9BulcwBB0etLtcrgQnYVo5EuR77JIGu1OUpzG5m4-RYqGD1CmsjOpDhAKHF36isNwG6ngWwZ4CKF6k8rdbcsexRCfXDSFZ2WlCpas4_IzODQToW9Db8hU5XbpTNhE"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold tracking-widest uppercase text-primary/60 font-label">Digital License</span>
+<h3 class="text-xl font-bold text-on-surface">Atelier Premium Kit v2.0</h3>
+<p class="text-sm text-on-surface-variant">Unlimited Lifetime Access</p>
+</div>
+</div>
+<div class="pt-4 border-t border-dashed border-outline-variant/30">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium">Subtotal</span>
+<span class="font-bold">MYR 129.00</span>
+</div>
+<div class="flex justify-between items-center text-primary">
+<span class="text-sm font-medium">Processing Fee</span>
+<span class="font-bold">MYR 0.00</span>
+</div>
+<div class="flex justify-between items-end mt-4">
+<span class="text-sm text-on-surface-variant">Total Amount</span>
+<span class="text-3xl font-black text-on-surface">MYR 129.00</span>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-secondary-container/10 rounded-full -z-10 blur-2xl"></div>
+</div>
+<!-- Trust Badges -->
+<div class="flex gap-4 items-center pt-8">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-primary-container text-on-primary-container rounded-full text-xs font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        Bank Negara Compliant
+                    </div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-bold">
+<span class="material-symbols-outlined text-sm">lock</span>
+                        SSL Encrypted
+                    </div>
+</div>
+</div>
+<!-- Right: Payment Process (Tonal Layering) -->
+<div class="lg:col-span-7 bg-surface-container-low p-1 rounded-2xl">
+<div class="bg-surface-container-lowest rounded-[1.25rem] p-8 md:p-10 shadow-sm">
+<h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+<span class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-sm">1</span>
+                        Choose Payment Method
+                    </h2>
+<!-- Payment Options Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+<!-- Option: FPX -->
+<div class="border-2 border-primary bg-primary/5 p-5 rounded-xl flex flex-col gap-4 cursor-pointer relative group transition-all">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">FPX (Online Banking)</h4>
+<p class="text-xs text-on-surface-variant">Direct bank transfer from major banks</p>
+</div>
+</div>
+<!-- Option: DuitNow QR -->
+<div class="border-2 border-outline-variant/20 hover:border-primary/40 p-5 rounded-xl flex flex-col gap-4 cursor-pointer relative group transition-all">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary text-3xl">qr_code_2</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant"></div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">DuitNow QR</h4>
+<p class="text-xs text-on-surface-variant">Scan &amp; Pay via any local bank app</p>
+</div>
+</div>
+</div>
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-sm">2</span>
+                        Select Your Bank
+                    </h2>
+<!-- Bank Selection -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="Maybank" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK0HInzJh71rrm4ByFIOf7LRQXrsku3IVihV6-anGGQn5WskOTOcbETSiuGgDOWV8Al7Nl7o8uhqWcvZOAFfaD9Wtf88Dt2GydM25VC9m_nyfTisR3PqirGjQuseA_tfXfYZL3k80ZvzeP-1ArkBfShKNqN_jCKxVTOUQE--HIJueFqi0jyOrIlIszeFHXvsf6YTmYeSG4RGNHWIyKgbJESqT8oPwWpnwCnTavATCpJtLWUPn5u2z5NNmAYQsqrpznqIT0rRuJrpk"/>
+</div>
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="CIMB" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIvi2PV7zy3Lrlj9iG7GSQYHddYzu0WsKAmuebCRxGMqJ7J8l8ujYQodvaV_49dbiX__2PFYps7dOSOlBsYdbEEYW4KxKG2qOOpobuEKOC-BLHMzyN8RXD0ZWwEHDfiT-sPLcivambVpvRCiFVQJy8-cDqqaZ71KpMRmvtL3-QW4X_AhY3873z03fA1GYvixKKaSqioSgde26vQ9ebB9lzD1ZZCrfWmOo3kVLzgrezybglYDJVHOAt_PYUFYo87On4CRbH0YDUCO4"/>
+</div>
+<div class="h-14 bg-surface-container-high border-primary/40 border rounded-lg flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="Public Bank" class="max-h-6 opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0-mp95q98jZ2B61f8-97JXOkhHcCS767sllJzxDvd4wN_inmYr98SGqAE4B2Q62BtkpYocKhreKNRlgVIjnaLUvVctK3LyWljd866Kj5ElQQlYDFeOBgfQVc1NZ9qleyVKiAJNQXoZnY3vyIplpQ4-G-eWYdxmfq7fRDRK7d7eLisPqvd5Eg5VGbel7KRlSNNpzoTkIkv6upUosVk1eYgltmLlDASYq9hJZ_QZ72WGWjJDztLOIK-s2qp_-sSkkTwcHiKo1FLxVs"/>
+</div>
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="RHB" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkwqJE_yzdj9DzFytuTagr3j8ShMNi_V_tcj1NwAPcQfd29fBnoaJ8yypnViR4c6q0PJAR_NmdMD2JIuT9eTk01sT5_gAFTWuA49gH-hWJ4kgDW8B_l1AqqG217kbbK8glIIcb3P3qvvABy792DGnrZq47xgr4MXkVbj6d870MgseHwFL-d6Xt6qUFcTge0FOtK0WxRs68TMI5-Vh-v7Xsw2OC6E-eCj2oUlhx81KvcbqcBvL2huud0-1TLSPXTCi0d1n-wdz6Kjo"/>
+</div>
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="Hong Leong Bank" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA6es67gb6VBYblS5K3RRUl4MxgroesiM-s-eIyNjJUmaw5cqncMC79I6Xm-4BLv7hCtOl3TnkHzXhZBYnpvHuCmJjPjVlLcaNMFDq10GesD8PJTmHj8b3uT6OQk2qfbGQnF7frUlfHKCZP7xLhSPFFq4QhAyb6tMZjilYLxgKZcZDrXlCX7dWsNPTgagQ3gJfHbj7yVVvs0JGr6ZnbdCucN-2KCF64gZAr-iHl77iqtHAZF61fABU--lqgbuISu22L9EADZhvT_k"/>
+</div>
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="Ambank" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU341olfRYmM8LgKr3FOpOXRh9Q44pqOL__n38HEveiT_U42CWXohnF0p2JU2975yQOZt0u9en_3a3QEw668dyTO3c6sC1I06Oajzo_jTzOym1QMuHGyHdvgJJjJdqoB_emh6mpgcyNUM7spd80pJeSeRItkVughLYDcoIkEzpNtiWI0Y56tjJeDHePueRUwYKNHa5-1XdRVpq98H32ML1EjeuCcW9JGUEIr0EtK6iC1S8n75q5YS8qYoMZPQWZ20obIF75U_GnXs"/>
+</div>
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="Affin" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIEA4BO4sJEoUeEvOvpgcN0xqfACm8mYig7H7HhwvDkAuTt-EsAD4pahPdKZDCmvpXi-HV9J0JQXdVn6hkV89HnpqOivvIej5X8XZPbeV3P-ddTMIZj40On6mzs22iOUoc-cAuD-Sr4i_p8W75M9vWsiPWXO2HYdf9z7nGraJOLqUX6p1pwfjPmXemMpwmlZegeXa0KFx2hofosAZkKwh7ircF10WSUv1CMr11reFwn-kJwubh5AITsYTIps2t3piCyrn5AYKfjaw"/>
+</div>
+<div class="h-14 bg-surface-container rounded-lg border border-transparent hover:border-primary flex items-center justify-center p-2 transition-all cursor-pointer">
+<img alt="OCBC" class="max-h-6 opacity-70 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj7uUOqOrAhtcNrWTqCRPn4qoEwHStWZ9LGa9AkaGnQcZzSzuoNAC27QDfcL7uuUp5oPn8r6DuddDwNu0J7IdWPHfeY9Ua9A6Be4SJ24JHQY4P4chKL2oMpioxvOvlhussPGeMei2J9EiXaryL_KnebgbL6BqmQffMfuL_mu_5OfXsz-OBLSPFtx2IWswNvK-qE7fD4xUCoxx_euIo1NpA7b-hlpkiKzMkYeDzVafiSiuk6twA6Hj4vzuRnwP0sBfmaFJoPgoUdKA"/>
+</div>
+</div>
+<!-- Final Action -->
+<div class="flex flex-col gap-4">
+<button class="w-full h-16 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-bold text-lg shadow-[0_12px_24px_-8px_rgba(0,104,95,0.3)] hover:scale-[1.02] active:scale-95 duration-200 transition-all flex items-center justify-center gap-3">
+<span>Proceed to Secure Payment</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<p class="text-center text-xs text-on-surface-variant px-6">
+                            By clicking proceed, you will be redirected to our secure FPX gateway. Your payment information is protected by industry-standard encryption.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification / Processing Overlay (Visual Logic representation) -->
+<div class="hidden fixed inset-0 z-50 bg-on-background/20 backdrop-blur-md flex items-center justify-center p-6">
+<div class="bg-white rounded-2xl p-10 max-w-md w-full shadow-2xl flex flex-col items-center text-center">
+<div class="w-20 h-20 border-4 border-primary border-t-transparent rounded-full mb-6"></div>
+<h2 class="text-2xl font-bold mb-2">Verifying Payment</h2>
+<p class="text-on-surface-variant">Please do not close this window. We are communicating with your bank to finalize the transaction.</p>
+</div>
+</div>
+<!-- Success Message Section (Anchor for After Payment) -->
+<div class="mt-20 border-t border-outline-variant/20 pt-20">
+<div class="bg-primary/5 rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8">
+<span class="material-symbols-outlined text-primary/10 text-[120px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-32 h-32 rounded-2xl bg-primary text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">download_done</span>
+</div>
+<div class="flex flex-col gap-4 relative z-10">
+<span class="text-primary font-bold uppercase tracking-widest text-sm">Post-Purchase Sequence</span>
+<h2 class="text-4xl font-extrabold text-on-surface">Payment Successful!</h2>
+<p class="text-on-surface-variant max-w-lg">
+                        Your Atelier Premium Kit has been unlocked. Check your email for the license key or download the assets immediately below.
+                    </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">download</span>
+                            Download Assets
+                        </button>
+<button class="bg-white border border-outline-variant/30 text-on-surface px-8 py-4 rounded-xl font-bold hover:bg-surface-container transition-colors">
+                            View Receipt
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Space -->
+<footer class="h-24 flex items-center justify-center text-on-surface-variant/40 text-xs font-medium tracking-widest uppercase">
+        SenangStore Digital Atelier • Secure Checkout System
+    </footer>
+</body></html>
